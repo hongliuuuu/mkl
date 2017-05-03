@@ -61,7 +61,7 @@ def similarity(X):
 def Lsvm_patatune(train_x,train_y,test_x, test_y):
     tuned_parameters = [
         {'kernel': ['rbf'], 'C': [0.01, 0.1, 1, 10, 100, 1000],'gamma': [0.0625, 0.125,0.25, 0.5, 1, 2, 5 ,7, 10, 12 ,15 ,17 ,20]}]
-    clf = GridSearchCV(SVC(C=1), tuned_parameters, cv=5, n_jobs=1
+    clf = GridSearchCV(SVC(C=1), tuned_parameters, cv=5, n_jobs=-1
                        )  # SVC(probability=True)#SVC(kernel="linear", probability=True)
     clf.fit(train_x, train_y)
     print(clf.score(test_x,test_y))
@@ -69,7 +69,7 @@ def Lsvm_patatune(train_x,train_y,test_x, test_y):
 def gama_patatune(train_x,train_y,c):
     tuned_parameters = [
         {'kernel': ['rbf'], 'gamma': [0.0625, 0.125,0.25, 0.5, 1, 2, 5 ,7, 10, 12 ,15 ,17 ,20] }]
-    clf = GridSearchCV(SVC(C=c), tuned_parameters, cv=5, n_jobs=1
+    clf = GridSearchCV(SVC(C=c), tuned_parameters, cv=5, n_jobs=-1
                        )  # SVC(probability=True)#SVC(kernel="linear", probability=True)
     clf.fit(train_x, train_y)
     return clf.best_params_['gamma']
